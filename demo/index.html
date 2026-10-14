@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="nl" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Huisstijl demo</title>
+<link rel="stylesheet" href="../huisstijl.css">
+</head>
+<body>
+<!-- Living reference of every component, without a framework. Open via a local web server (ES modules). -->
+<a class="skip" href="#main">Naar inhoud</a>
+<header class="topbar">
+  <div class="brand">
+    <img class="logo" src="logo.jpg" alt="">
+    <div><h1>Huisstijl</h1><div class="subtitle">Gedeelde stijl voor ControlDeck, Myscripts en pcmanager</div></div>
+  </div>
+  <div class="tools">
+    <span class="status online">Online</span>
+    <span class="muted">Uptime 3d 4h 12m</span>
+    <button type="button" class="refresh" data-icon="refresh"><span>Vernieuwen</span></button>
+    <button type="button" class="theme" id="theme" aria-label="Thema wisselen" data-icon="sun"></button>
+  </div>
+</header>
+<div class="shell">
+  <button type="button" class="hamburger" aria-expanded="false" id="hamburger"><span data-icon="menu"></span>Dashboard</button>
+  <nav class="navigation" id="nav" style="--menu-columns:6" aria-label="Hoofdmenu">
+    <a class="nav-item active" aria-current="page" href="#" data-icon="dashboard">Dashboard</a>
+    <a class="nav-item" href="#" data-icon="proxmox">Proxmox</a>
+    <a class="nav-item" href="#" data-icon="network">DNS &amp; Proxy</a>
+    <a class="nav-item" href="#" data-icon="backup">Backups</a>
+    <a class="nav-item" href="#" data-icon="jobs">Taken</a>
+    <details class="nav-group">
+      <summary class="nav-item"><span data-icon="settings"></span>Beheer <span class="chevron">⌄</span></summary>
+      <div class="submenu"><a href="#" aria-current="page">Gebruikers</a><a href="#">Instellingen</a></div>
+    </details>
+  </nav>
+
+  <main id="main" class="workspace module" tabindex="-1">
+    <div class="page-heading">
+      <div><h2>Componenten</h2><p>Alle onderdelen in beide thema's. Wissel met de knop rechtsboven.</p></div>
+      <div class="form-actions"><button type="button">Annuleren</button><button type="button" class="primary">Opslaan</button><button type="button" class="danger">Verwijderen</button></div>
+    </div>
+
+    <div class="widget-grid">
+      <section class="widget"><header><h3>pve-intel<small>Proxmox VE 9</small></h3><span class="status online">Online</span></header>
+        <dl class="stats"><div><dt>CPU</dt><dd>12%</dd></div><div><dt>RAM</dt><dd>61%</dd></div><div><dt>Gasten</dt><dd>14</dd></div><div><dt>Uptime</dt><dd>9d</dd></div></dl>
+        <ul class="meters">
+          <li class="meter-row"><span class="meter-label">rpool</span><span class="meter-track"><span class="meter-fill" style="width:42%"></span></span><span class="meter-value">42%</span></li>
+          <li class="meter-row"><span class="meter-label">tank</span><span class="meter-track"><span class="meter-fill high" style="width:81%"></span></span><span class="meter-value">81%</span></li>
+          <li class="meter-row"><span class="meter-label">backup</span><span class="meter-track"><span class="meter-fill critical" style="width:95%"></span></span><span class="meter-value">95%</span></li>
+        </ul>
+      </section>
+      <section class="widget warning"><header><h3>pve-amd</h3><span class="status checking">Controleren</span></header><p class="muted">Waarschuwingsrand voor een widget.</p></section>
+      <section class="widget error"><header><h3>pve-nas</h3><span class="status offline">Offline</span></header><p class="muted">Foutrand voor een widget.</p></section>
+    </div>
+
+    <div class="tabs" role="tablist"><button class="active" aria-selected="true">Overzicht</button><button>Services</button><button>Logboek</button></div>
+
+    <div class="data-table"><table>
+      <thead><tr><th>Taak</th><th>Node</th><th>Status</th><th>Melding</th></tr></thead>
+      <tbody>
+        <tr class="clickable"><td>Clusterscan</td><td>pve-intel</td><td><span class="state ok">OK</span></td><td class="wrap">14 services gecontroleerd</td></tr>
+        <tr class="clickable"><td>Backup host</td><td>pve-amd</td><td><span class="state running">Bezig</span></td><td class="wrap">rpool/ROOT/pve-1</td></tr>
+        <tr class="row-error"><td>Sync OPNsense</td><td>pve-nas</td><td><span class="state error">Fout</span></td><td class="wrap">API niet bereikbaar</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>Formulier</h3>
+    <section class="card">
+      <form class="form" onsubmit="return false">
+        <label class="field">Servicenaam<input value="jellyfin"></label>
+        <label class="field">Eigen poort<input type="number" value="8096"><small>Leeg = automatisch</small></label>
+        <label class="field">Schema<select><option>http</option><option>https</option></select></label>
+        <label class="checkbox"><input type="checkbox" checked> Webproxy actief</label>
+        <div class="notice warning full">Wijziging wordt pas toegepast na synchronisatie.</div>
+        <div class="form-actions"><button type="button" id="open">Details (modal)</button><button class="primary">Opslaan</button></div>
+      </form>
+    </section>
+
+    <h3>Logboek</h3>
+    <pre class="log">[12:00:01] Scan gestart op pve-intel
+[12:00:04] 14 gasten gevonden
+[12:00:09] jellyfin: DNS ingesteld
+[12:00:11] Klaar</pre>
+  </main>
+  <footer><p>Huisstijl · geïnspireerd op <a href="https://github.com/MacRimi/ProxMenux">ProxMenux Monitor</a></p></footer>
+</div>
+
+<dialog class="modal" id="modal" aria-labelledby="modal-title">
+  <div class="modal-content">
+    <header class="modal-header"><h3 id="modal-title">jellyfin</h3><button type="button" class="modal-close" aria-label="Sluiten" id="close">✕</button></header>
+    <dl><dt>DNS</dt><dd>jellyfin.home → 192.168.20.120</dd><dt>Proxy</dt><dd>w.jellyfin.home → :8096</dd><dt>Status</dt><dd><span class="status ok">Ingesteld</span></dd></dl>
+  </div>
+</dialog>
+
+<script type="module">
+import { iconSvg } from "../icons/icons.js";
+for (const el of document.querySelectorAll("[data-icon]")) el.insertAdjacentHTML("afterbegin", iconSvg(el.dataset.icon));
+const root = document.documentElement, theme = document.getElementById("theme");
+theme.onclick = () => { root.dataset.theme = root.dataset.theme === "dark" ? "light" : "dark"; theme.innerHTML = iconSvg(root.dataset.theme === "dark" ? "sun" : "moon"); };
+const nav = document.getElementById("nav"), burger = document.getElementById("hamburger");
+burger.onclick = () => burger.setAttribute("aria-expanded", nav.classList.toggle("expanded"));
+const modal = document.getElementById("modal");
+document.getElementById("open").onclick = () => modal.showModal();
+document.getElementById("close").onclick = () => modal.close();
+modal.onclick = e => { if (e.target === modal) modal.close(); };
+</script>
+</body>
+</html>

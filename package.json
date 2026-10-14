@@ -1,0 +1,33 @@
+{
+  "name": "@vanburik/huisstijl",
+  "version": "0.1.0",
+  "description": "Gedeelde huisstijl (CSS-tokens, componenten, iconen, React) voor ControlDeck, Myscripts en pcmanager.",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "files": ["huisstijl.css", "css", "icons", "react", "README.md"],
+  "exports": {
+    ".": "./huisstijl.css",
+    "./huisstijl.css": "./huisstijl.css",
+    "./tokens.css": "./css/tokens.css",
+    "./components.css": "./css/components.css",
+    "./icons": { "types": "./icons/icons.d.ts", "default": "./icons/icons.js" },
+    "./react": "./react/index.tsx"
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "typecheck": "tsc --noEmit",
+    "dist": "node scripts/dist.mjs"
+  },
+  "peerDependencies": {
+    "react": ">=19"
+  },
+  "peerDependenciesMeta": {
+    "react": { "optional": true }
+  },
+  "devDependencies": {
+    "@types/react": "19.3.0",
+    "react": "19.3.0",
+    "typescript": "7.0.2"
+  }
+}
