@@ -1,6 +1,6 @@
 {
   "name": "@vanburik/huisstijl",
-  "version": "0.1.0",
+  "version": "2026.10.14+1",
   "description": "Gedeelde huisstijl (CSS-tokens, componenten, iconen, React) voor ControlDeck, Myscripts en pcmanager.",
   "private": true,
   "type": "module",

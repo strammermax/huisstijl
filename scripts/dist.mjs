@@ -5,7 +5,7 @@ import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const version = JSON.parse(readFileSync(join(root, "package.json"), "utf8")).version;
+const version = readFileSync(join(root, "VERSION"), "utf8").trim();
 
 export function flatten(file, seen = new Set()) {
   const path = resolve(file);

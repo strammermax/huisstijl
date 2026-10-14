@@ -5,4 +5,4 @@
 - Components in `react/` contain markup and behaviour only — no inline colours or layout CSS.
 - Icons are original drawings. Do not copy code, CSS or assets from ProxMenux (GPL-3.0) or other projects; inspiration only.
 - Every change: update `demo/index.html` when a component is added or changed, run `npm test` and `npm run typecheck`, and check the demo in both themes and at 375px width.
-- Removing or renaming a class or token is a breaking change (major version); note it in the README.
+- Version format is yyyy.mm.dd.buildnr in `VERSION` (package.json: yyyy.mm.dd+buildnr); bump both and tag `v<VERSION>` for every release. Removing or renaming a class or token breaks projects: say so in the commit.

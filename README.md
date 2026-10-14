@@ -37,7 +37,7 @@ Statussen: `.status.ok|warning|error|running|neutral` (pil) en `.state.*` (tekst
 ### React / Next.js (ControlDeck, Myscripts)
 
 ```sh
-npm install github:strammermax/huisstijl#v0.1.0
+npm install github:strammermax/huisstijl#v2026.10.14.1
 ```
 
 ```js
@@ -76,5 +76,7 @@ npm run typecheck  # React-componenten
 npx serve .        # open /demo/ en controleer beide thema's en 375px breedte
 ```
 
-Versies volgen semver: een gewijzigde of verwijderde klasse of token is een **major**,
-nieuwe componenten een **minor**. Tag elke release (`v0.1.0`) zodat projecten een vaste versie pinnen.
+Versies volgen `yyyy.mm.dd.buildnr` (zoals Myscripts en infisical-secret-client) en staan in `VERSION`.
+Tag elke release als `v2026.10.14.1` zodat projecten een vaste versie pinnen. npm eist semver, daarom
+staat in `package.json` dezelfde versie als `2026.10.14+1`. Een gewijzigde of verwijderde klasse of token
+breekt projecten: vermeld dat in de commit en pas de projecten in dezelfde ronde aan.
